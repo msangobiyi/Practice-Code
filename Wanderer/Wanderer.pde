@@ -1,35 +1,35 @@
-float x,y,velx,vely,accelx,accely,sz;
+PVector loc;
+PVector vel;
+PVector acc;
+int sz= 35;
 void setup(){
   size(800,800);
-  x=width/2;
-  y=height/2;
-  velx= 0;
-  vely= 0;
-  sz=35;
+ 
 }
 void draw(){
-  background(0);
+  loc= new PVector(width/2,height/2);
+  
+  vel= new PVector(0,0);
+  
+  acc= new PVector(random(-.1,.1),random(-.1,.1));
+  
   fill(random(255),random(255),random(255));
   
-
-  accelx=random(-5,5);
-  accely=random(-5,5);
-  velx+= accelx;
-  vely+= accely;
-  x+=velx;
-  y+=vely;
-  ellipse(x,y,sz,sz);
- if(x > width + sz/2){
-   x=-sz/2;
+  vel.add(acc);
+  vel.limit(10);
+  ellipse(loc.x,loc.y,sz,sz);
+  loc.x add 
+ if(loc.x -sz/2> width){
+   loc.x=-sz/2;
  }
- if(x < -sz/2){
-  x = width + sz/2; 
+ if(loc.x+sz/2<0){
+  loc.x = width + sz/2; 
  }
- if(y > height + sz/2){
-   y= -sz/2;
+ if(loc.y- sz/2>height){
+   loc.y= -sz/2;
  }
- if(y < -sz/2){
-  y = height + sz/2; 
+ if(loc.y +sz/2<0){
+  loc.y = height + sz/2; 
  }
  
 }
